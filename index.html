@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERFORMA CURSOS | Educação Profissional de Excelência</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --secondary-blue: #2563EB;
+            --accent-green: #059669;
+            --accent-orange: #F97316;
+            --light-gray: #F8FAFC;
+            --dark-gray: #334155;
+            --text-color: #1F2937;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        /* NOVO ESTILO PARA LOGO COM NOME */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-with-name {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: brightness(0) invert(1); /* Torna a logo branca */
+        }
+        
+        /* Estilo alternativo se sua logo já tiver cores */
+        .logo-img-box.colored-logo img {
+            filter: none; /* Remove o filtro para logos coloridas */
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+        
+        .logo-main-text span {
+            color: var(--accent-orange);
+        }
+        
+        .logo-subtext {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+            margin-top: 3px;
+        }
+        
+        /* Estilo temporário enquanto não tem logo */
+        .logo-placeholder-box {
+            width: 100px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 1.8rem;
+            box-shadow: var(--shadow);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-blue);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-blue);
+            border: 2px solid var(--secondary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-orange);
+            color: var(--white);
+        }
+        
+        .btn-accent:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-orange);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: rgba(37, 99, 235, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: var(--secondary-blue);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Courses Section */
+        .courses-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-image {
+            height: 180px;
+            background-color: var(--secondary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background-color: rgba(5, 150, 105, 0.1);
+            color: var(--accent-green);
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .course-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .course-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light-gray);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            border: 2px solid var(--secondary-blue);
+            color: var(--secondary-blue);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-btn:hover {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .features-grid, .courses-grid, .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 20px;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                visibility: hidden;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid, .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .logo-img-box, .logo-placeholder-box {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .logo-main-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-with-name {
+                gap: 12px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img-box, .logo-placeholder-box {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .logo-main-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-subtext {
+                font-size: 0.7rem;
+            }
+            
+            .logo-with-name {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre os cursos da PERFORMA CURSOS" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo-container">
+                <!-- NOVA ESTRUTURA DE LOGO COM NOME -->
+                <div class="logo-with-name">
+                    <!-- CAIXA PARA SUA LOGO -->
+                    <div class="logo-img-box colored-logo">                        
+                        <img src="LOGO.png" alt="PERFORMA CURSOS">                        
+                        <div class="logo-img-box">                            
+                        </div>
+
+			</div>                  
+                    <!-- TEXTO DO NOME -->
+                    <div class="logo-text">
+                        <div class="logo-main-text">
+                            PERFORMA<span>CURSOS</span>
+                        </div>
+                        <div class="logo-subtext">
+                            Educação Profissional
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#courses">Cursos</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-secondary">Portal do Aluno</a>
+                    <!-- BOTÃO MATRICULE-SE AGORA NO HEADER DIRECIONANDO PARA WHATSAPP -->
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de me matricular na PERFORMA CURSOS. Poderia me ajudar?" target="_blank" class="btn btn-primary">Matricule-se</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>PERFORMA CURSOS: Transformando carreiras com excelência</h2>
+                <p>Educação profissional de qualidade que prepara você para o mercado de trabalho. Cursos práticos, professores experientes e alta taxa de empregabilidade.</p>
+                <div class="hero-buttons">
+                    <a href="#courses" class="btn btn-accent">Ver Cursos</a>
+                    <!-- BOTÃO FALE CONOSCO NO HERO DIRECIONANDO PARA WHATSAPP -->
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre os cursos da PERFORMA CURSOS" target="_blank" class="btn btn-secondary">Fale Conosco</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que escolher a PERFORMA CURSOS?</h2>
+                <p>Diferenciais que fazem da nossa escola a melhor escolha para sua formação</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Professores Experientes</h3>
+                    <p>Corpo docente com ampla experiência no mercado de trabalho.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Laboratórios Modernos</h3>
+                    <p>Infraestrutura com equipamentos atualizados para aprendizado prático.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certificado Reconhecido</h3>
+                    <p>Certificação válida em todo território nacional.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Parcerias com Empresas</h3>
+                    <p>Conectamos você com oportunidades de emprego.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Cursos</h2>
+                <p>Escolha a área que mais combina com você e comece sua jornada profissional</p>
+            </div>
+            
+            <div class="courses-filter">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="tech">Tecnologia</button>
+                <button class="filter-btn" data-filter="admin">Administração</button>
+                <button class="filter-btn" data-filter="health">Saúde</button>
+                <button class="filter-btn" data-filter="gastronomy">Gastronomia</button>
+            </div>
+            
+            <div class="courses-grid">
+                <!-- Curso 1 -->
+                <div class="course-card" data-category="tech">
+                    <div class="course-image" style="background-color: #FFC222;">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Tecnologia</span>
+                        <h3 class="course-title">Mantenedor de Usina Solar</h3>
+                        <p>Aprenda as melhores práticas de O&M em usinas fotovoltaicas e saia na frente com excelência técnica.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 3 meses</span>
+                            <span><i class="far fa-user"></i> 10 vagas</span>
+                        </div>
+                        <div class="course-price">R$ 199/mês</div>
+                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Desenvolvimento Full-Stack da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <!-- Curso 2 -->
+                <div class="course-card" data-category="health">
+                    <div class="course-image" style="background-color: #054F77;">
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Saúde</span>
+                        <h3 class="course-title">Eletricista Residencial/predial</h3>
+                        <p>Formação prática para atuar com excelência em projetos e execução de instalações residenciais de baixa tensão.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 meses</span>
+                            <span><i class="far fa-user"></i> 10 vagas</span>
+                        </div>
+                        <div class="course-price">R$ 179/mês</div>
+                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Enfermagem do Trabalho da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <!-- Curso 3 -->
+                <div class="course-card" data-category="admin">
+                    <div class="course-image" style="background-color: #8B5CF6;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Administração</span>
+                        <h3 class="course-title">Gestão de Empresas</h3>
+                        <p>Domine as principais técnicas de gestão e administração.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 5 meses</span>
+                            <span><i class="far fa-user"></i> 35 vagas</span>
+                        </div>
+                        <div class="course-price">R$ 189/mês</div>
+                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Gestão de Empresas da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <!-- BOTÃO VER TODOS OS CURSOS DIRECIONANDO PARA WHATSAPP -->
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de ver todos os cursos disponíveis na PERFORMA CURSOS" target="_blank" class="btn btn-accent" style="text-decoration: none;">Ver Todos os Cursos</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Depoimentos de Alunos</h2>
+                <p>Veja o que nossos ex-alunos falam sobre a experiência na PERFORMA CURSOS</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card" id="testimonial1">
+                    <div class="testimonial-text">
+                        "Após concluir o curso de Desenvolvimento Full-Stack na PERFORMA CURSOS, consegui minha primeira vaga como desenvolvedor júnior em apenas duas semanas. A metodologia prática foi fundamental para minha contratação."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            RF
+                        </div>
+                        <div class="author-info">
+                            <h4>Roberto Fernandes</h4>
+                            <p>Ex-aluno de Desenvolvimento Full-Stack</p>
+                            <p><strong>Atualmente:</strong> Desenvolvedor na Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevTestimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn" id="nextTestimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Pronto para transformar sua carreira?</h2>
+            <p>Na PERFORMA CURSOS, sua educação profissional é nossa prioridade. Turmas começando todo mês com condições especiais de pagamento.</p>
+            <div style="margin-top: 30px;">
+                <!-- BOTÃO PRINCIPAL "MATRICULE-SE AGORA" DIRECIONANDO PARA WHATSAPP -->
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de me matricular na PERFORMA CURSOS. Poderia me informar sobre o processo de matrícula, turmas disponíveis e formas de pagamento?" target="_blank" class="btn btn-accent" style="font-size: 1.1rem; padding: 15px 30px; text-decoration: none;">Matricule-se Agora</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 style="margin: 0;">PERFORMA <span style="color: #F97316;">CURSOS</span></h3>
+                    </div>
+                    <p>Transformando carreiras através da educação profissional de excelência desde 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Cursos</h3>
+                    <ul>
+                        <li><a href="#courses">Tecnologia</a></li>
+                        <li><a href="#courses">Administração</a></li>
+                        <li><a href="#courses">Saúde</a></li>
+                        <li><a href="#courses">Gastronomia</a></li>
+                        <li><a href="#courses">Design</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#courses">Cursos</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Rua das Profissões, 123 - Centro</li>
+                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@performacursos.com</li>
+                        <li><i class="fas fa-clock"></i> Seg-Sex: 8h às 22h | Sáb: 8h às 14h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 PERFORMA CURSOS. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenu
