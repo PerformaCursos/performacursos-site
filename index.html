@@ -33,6 +33,7 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--white);
+            transition: all 0.3s;
         }
         
         h1, h2, h3, h4 {
@@ -70,7 +71,6 @@
             padding: 15px 0;
         }
         
-        /* NOVO ESTILO PARA LOGO COM NOME */
         .logo-container {
             display: flex;
             align-items: center;
@@ -88,7 +88,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+            background: linear-gradient(135deg, var(--primary-white), var(--secondary-blue));
             border-radius: 10px;
             padding: 8px;
             box-shadow: var(--shadow);
@@ -97,12 +97,11 @@
         .logo-img-box img {
             max-width: 100%;
             max-height: 100%;
-            filter: brightness(0) invert(1); /* Torna a logo branca */
+            filter: brightness(0) invert(1);
         }
         
-        /* Estilo alternativo se sua logo já tiver cores */
         .logo-img-box.colored-logo img {
-            filter: none; /* Remove o filtro para logos coloridas */
+            filter: none;
         }
         
         .logo-text {
@@ -127,20 +126,6 @@
             color: var(--dark-gray);
             font-weight: 500;
             margin-top: 3px;
-        }
-        
-        /* Estilo temporário enquanto não tem logo */
-        .logo-placeholder-box {
-            width: 100px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 10px;
-            color: var(--white);
-            font-size: 1.8rem;
-            box-shadow: var(--shadow);
         }
         
         nav ul {
@@ -219,7 +204,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -345,7 +330,7 @@
         
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
         }
         
@@ -355,6 +340,9 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .course-card:hover {
@@ -373,6 +361,9 @@
         
         .course-content {
             padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .course-category {
@@ -390,6 +381,14 @@
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--primary-blue);
+            min-height: 60px;
+        }
+        
+        .course-description {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
         
         .course-meta {
@@ -607,14 +606,186 @@
             background-color: #128C7E;
         }
         
+        /* Modal de Matrícula */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 25px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-modal:hover {
+            transform: scale(1.2);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-submit {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .form-submit button {
+            background-color: var(--accent-green);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-submit button:hover {
+            background-color: #047857;
+        }
+        
+        .form-submit button i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-success {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .whatsapp-success i {
+            font-size: 4rem;
+            color: #25D366;
+            margin-bottom: 20px;
+        }
+        
+        .whatsapp-success h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .whatsapp-success p {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+        }
+        
+        .whatsapp-btn-modal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .whatsapp-btn-modal:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+        
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .features-grid, .courses-grid, .footer-grid {
+            .features-grid, .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .hero h2 {
                 font-size: 2.5rem;
+            }
+            
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
         
@@ -663,7 +834,11 @@
                 align-items: center;
             }
             
-            .features-grid, .courses-grid {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .courses-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -672,7 +847,7 @@
                 gap: 30px;
             }
             
-            .logo-img-box, .logo-placeholder-box {
+            .logo-img-box {
                 width: 50px;
                 height: 50px;
             }
@@ -688,10 +863,15 @@
             section {
                 padding: 60px 0;
             }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
         
         @media (max-width: 480px) {
-            .logo-img-box, .logo-placeholder-box {
+            .logo-img-box {
                 width: 45px;
                 height: 45px;
             }
@@ -707,35 +887,120 @@
             .logo-with-name {
                 gap: 10px;
             }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .course-title {
+                min-height: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre os cursos da PERFORMA CURSOS" target="_blank" class="whatsapp-btn">
+    <!-- Botão Fixo do WhatsApp -->
+    <a href="https://wa.me/5584992064637?text=Olá! Gostaria de informações sobre os cursos da PERFORMA CURSOS" target="_blank" class="whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
+    <!-- Modal de Matrícula -->
+    <div class="modal-overlay" id="matriculaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Matrícula Online</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário de Matrícula -->
+                <form id="matriculaForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="celular">Celular *</label>
+                            <input type="tel" id="celular" name="celular" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="curso">Curso Pretendido *</label>
+                        <select id="curso" name="curso" required>
+                            <option value="">Selecione um curso</option>
+                            <option value="Eletricista Residencial/Predial + NR10">Eletricista Residencial/Predial + NR10 (120h)</option>
+                            <option value="Eletricista Industrial + NR10">Eletricista Industrial + NR10 (120h)</option>
+                            <option value="Mantenedor de Usinas Fotovoltaicas">Mantenedor de Usinas Fotovoltaicas (40h)</option>
+                            <option value="NR10 Básico">NR10 Básico (40h)</option>
+                            <option value="NR10 Sistemas de Potência">NR10 Sistemas de Potência (40h)</option>
+                            <option value="NR10 Básico Reciclagem">NR10 Básico Reciclagem</option>
+                            <option value="NR10 Sistemas de Potência Reciclagem">NR10 Sistemas de Potência Reciclagem</option>
+                            <option value="Manobras e Subestações">Manobras e Subestações (20h)</option>
+                            <option value="Operador de Subestações">Operador de Subestações (40h)</option>
+                            <option value="Comunicação Verbal na Operação">Comunicação Verbal na Operação (8h)</option>
+                            <option value="Certificação de Operadores ONS">Certificação de Operadores ONS (30h)</option>
+                            <option value="Proteção de Sistemas Elétricos para Operadores">Proteção de Sistemas Elétricos para Operadores (30h)</option>
+                            <option value="Outro">Outro (especificar)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="outroCursoContainer" style="display: none;">
+                        <label for="outroCurso">Qual curso?</label>
+                        <input type="text" id="outroCurso" name="outroCurso" placeholder="Digite o nome do curso">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem (opcional)</label>
+                        <textarea id="mensagem" name="mensagem" rows="3" placeholder="Alguma dúvida ou observação?"></textarea>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit">
+                            <i class="fab fa-whatsapp"></i> Enviar para WhatsApp
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Mensagem de Sucesso (inicialmente escondida) -->
+                <div class="whatsapp-success" id="successMessage">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>Pronto para finalizar sua matrícula!</h3>
+                    <p>Clique no botão abaixo para ser redirecionado ao WhatsApp com todas as informações preenchidas.</p>
+                    <a href="#" target="_blank" class="whatsapp-btn-modal" id="whatsappLink">
+                        <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+                    </a>
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                        Se não for redirecionado automaticamente, copie a mensagem e envie manualmente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Header -->
     <header>
         <div class="container nav-container">
             <div class="logo-container">
-                <!-- NOVA ESTRUTURA DE LOGO COM NOME -->
                 <div class="logo-with-name">
                     <!-- CAIXA PARA SUA LOGO -->
-                    <div class="logo-img-box colored-logo">                        
-                        <img src="LOGO.png" alt="PERFORMA CURSOS">                        
-                        <div class="logo-img-box">                            
-                        </div>
-
-			</div>                  
+                    <div class="logo-img-box colored-logo">
+                         <img src="LOGO.png" alt="PERFORMA CURSOS">
+                        
+                    </div>
+                    
                     <!-- TEXTO DO NOME -->
                     <div class="logo-text">
                         <div class="logo-main-text">
                             PERFORMA<span>CURSOS</span>
                         </div>
                         <div class="logo-subtext">
-                            Educação Profissional
+                            Especialista em Treinamentos Profissionalizantes
                         </div>
                     </div>
                 </div>
@@ -747,271 +1012,766 @@
             
             <nav id="mainNav">
                 <ul>
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#courses">Cursos</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#testimonials">Depoimentos</a></li>
-                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#home" class="nav-link" data-section="home">Início</a></li>
+                    <li><a href="#courses" class="nav-link" data-section="courses">Cursos</a></li>
+                    <li><a href="#testimonials" class="nav-link" data-section="testimonials">Depoimentos</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contato</a></li>
                 </ul>
                 <div class="nav-buttons">
-                    <a href="#" class="btn btn-secondary">Portal do Aluno</a>
-                    <!-- BOTÃO MATRICULE-SE AGORA NO HEADER DIRECIONANDO PARA WHATSAPP -->
-                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de me matricular na PERFORMA CURSOS. Poderia me ajudar?" target="_blank" class="btn btn-primary">Matricule-se</a>
+                    <button class="btn btn-primary" id="matriculaBtnHeader">Matricule-se</button>
                 </div>
             </nav>
         </div>
     </header>
     
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h2>PERFORMA CURSOS: Transformando carreiras com excelência</h2>
-                <p>Educação profissional de qualidade que prepara você para o mercado de trabalho. Cursos práticos, professores experientes e alta taxa de empregabilidade.</p>
-                <div class="hero-buttons">
-                    <a href="#courses" class="btn btn-accent">Ver Cursos</a>
-                    <!-- BOTÃO FALE CONOSCO NO HERO DIRECIONANDO PARA WHATSAPP -->
-                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre os cursos da PERFORMA CURSOS" target="_blank" class="btn btn-secondary">Fale Conosco</a>
+    <!-- Site Institucional -->
+    <div id="siteContent">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>PERFORMA CURSOS: Especialista em Treinamentos Profissionais</h2>
+                    <p>Capacitação profissional de excelência. Cursos práticos, instrutores experientes e certificações reconhecidas pelo mercado.</p>
+                    <div class="hero-buttons">
+                        <a href="#courses" class="btn btn-accent">Ver Cursos</a>
+                        <button class="btn btn-secondary" id="matriculaBtnHero">Matricule-se Agora</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Por que escolher a PERFORMA CURSOS?</h2>
-                <p>Diferenciais que fazem da nossa escola a melhor escolha para sua formação</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <h3>Professores Experientes</h3>
-                    <p>Corpo docente com ampla experiência no mercado de trabalho.</p>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Por que escolher a PERFORMA CURSOS?</h2>
+                    <p>Diferenciais que fazem da nossa escola a melhor escolha para sua formação no setor elétrico</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Laboratórios Modernos</h3>
-                    <p>Infraestrutura com equipamentos atualizados para aprendizado prático.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Certificado Reconhecido</h3>
-                    <p>Certificação válida em todo território nacional.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Parcerias com Empresas</h3>
-                    <p>Conectamos você com oportunidades de emprego.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Courses Section -->
-    <section class="courses" id="courses">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nossos Cursos</h2>
-                <p>Escolha a área que mais combina com você e comece sua jornada profissional</p>
-            </div>
-            
-            <div class="courses-filter">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="tech">Tecnologia</button>
-                <button class="filter-btn" data-filter="admin">Administração</button>
-                <button class="filter-btn" data-filter="health">Saúde</button>
-                <button class="filter-btn" data-filter="gastronomy">Gastronomia</button>
-            </div>
-            
-            <div class="courses-grid">
-                <!-- Curso 1 -->
-                <div class="course-card" data-category="tech">
-                    <div class="course-image" style="background-color: #FFC222;">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <div class="course-content">
-                        <span class="course-category">Tecnologia</span>
-                        <h3 class="course-title">Mantenedor de Usina Solar</h3>
-                        <p>Aprenda as melhores práticas de O&M em usinas fotovoltaicas e saia na frente com excelência técnica.</p>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 3 meses</span>
-                            <span><i class="far fa-user"></i> 10 vagas</span>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
                         </div>
-                        <div class="course-price">R$ 199/mês</div>
-                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
-                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Desenvolvimento Full-Stack da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
+                        <h3>Instrutores Especialistas</h3>
+                        <p>Professores com ampla experiência.</p>
                     </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Foco em Segurança</h3>
+                        <p>Metodologia que prioriza as normas de segurança e boas práticas do setor.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Certificação Reconhecida</h3>
+                        <p>Certificados válidos e reconhecidos nacionalmente.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Conectados ao Mercado</h3>
+                        <p>Conteúdos atualizados com as demandas reais das empresas do setor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Courses Section -->
+        <section class="courses" id="courses">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nossos Cursos</h2>
+                    <p>Escolha a especialização que mais combina com sua carreira!</p>
                 </div>
                 
-                <!-- Curso 2 -->
-                <div class="course-card" data-category="health">
-                    <div class="course-image" style="background-color: #054F77;">
-                        <i class="fa-solid fa-plug-circle-bolt"></i>
-                    </div>
-                    <div class="course-content">
-                        <span class="course-category">Saúde</span>
-                        <h3 class="course-title">Eletricista Residencial/Predial</h3>
-                        <p>Formação prática para atuar com excelência em projetos e execução de instalações residenciais de baixa tensão.</p>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 6 meses</span>
-                            <span><i class="far fa-user"></i> 10 vagas</span>
-                        </div>
-                        <div class="course-price">R$ 179/mês</div>
-                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
-                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Enfermagem do Trabalho da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
-                    </div>
+                <div class="courses-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="eletrica">Elétrica</button>
+                    <button class="filter-btn" data-filter="nr10">NR10</button>
+                    <button class="filter-btn" data-filter="operacao">Operação</button>
                 </div>
                 
-                <!-- Curso 3 -->
-                <div class="course-card" data-category="admin">
-                    <div class="course-image" style="background-color: #8B5CF6;">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="course-content">
-                        <span class="course-category">Administração</span>
-                        <h3 class="course-title">Eletricista Industrial</h3>
-                        <p>Domine as principais técnicas de manutenção de sistemas elétricos industriais com o nosso curso, com ênfase em comandos elétricos e automação industrial.</p>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 5 meses</span>
-                            <span><i class="far fa-user"></i> 35 vagas</span>
+                <div class="courses-grid">
+                    <!-- Curso 1 -->
+                    <div class="course-card" data-category="eletrica nr10">
+                        <div class="course-image" style="background-color: #3B82F6;">
+                            <i class="fas fa-home"></i>
                         </div>
-                        <div class="course-price">R$ 189/mês</div>
-                        <!-- BOTÃO SAIBA MAIS NO CURSO DIRECIONANDO PARA WHATSAPP -->
-                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre o curso de Gestão de Empresas da PERFORMA CURSOS" target="_blank" class="btn btn-primary" style="width: 100%; display: block; text-decoration: none; text-align: center;">Saiba Mais</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <!-- BOTÃO VER TODOS OS CURSOS DIRECIONANDO PARA WHATSAPP -->
-                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de ver todos os cursos disponíveis na PERFORMA CURSOS" target="_blank" class="btn btn-accent" style="text-decoration: none;">Ver Todos os Cursos</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Depoimentos de Alunos</h2>
-                <p>Veja o que nossos ex-alunos falam sobre a experiência na PERFORMA CURSOS</p>
-            </div>
-            
-            <div class="testimonial-slider">
-                <div class="testimonial-card" id="testimonial1">
-                    <div class="testimonial-text">
-                        "Após concluir o curso de Desenvolvimento Full-Stack na PERFORMA CURSOS, consegui minha primeira vaga como desenvolvedor júnior em apenas duas semanas. A metodologia prática foi fundamental para minha contratação."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            RF
-                        </div>
-                        <div class="author-info">
-                            <h4>Roberto Fernandes</h4>
-                            <p>Ex-aluno de Desenvolvimento Full-Stack</p>
-                            <p><strong>Atualmente:</strong> Desenvolvedor na Tech Solutions</p>
+                        <div class="course-content">
+                            <span class="course-category">Elétrica / NR10</span>
+                            <h3 class="course-title">Eletricista Residencial/Predial + NR10</h3>
+                            <p class="course-description">Formação completa para atuação em instalações elétricas residenciais e prediais, incluindo treinamento NR10 para segurança em eletricidade.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 120 horas</span>
+                                <span><i class="far fa-user"></i> 25 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Eletricista Residencial/Predial + NR10" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-btn" id="prevTestimonial">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="slider-btn" id="nextTestimonial">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2>Pronto para transformar sua carreira?</h2>
-            <p>Na PERFORMA CURSOS, sua educação profissional é nossa prioridade. Turmas começando todo mês com condições especiais de pagamento.</p>
-            <div style="margin-top: 30px;">
-                <!-- BOTÃO PRINCIPAL "MATRICULE-SE AGORA" DIRECIONANDO PARA WHATSAPP -->
-                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de me matricular na PERFORMA CURSOS. Poderia me informar sobre o processo de matrícula, turmas disponíveis e formas de pagamento?" target="_blank" class="btn btn-accent" style="font-size: 1.1rem; padding: 15px 30px; text-decoration: none;">Matricule-se Agora</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                        <div style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                            <i class="fas fa-graduation-cap"></i>
+                    
+                    <!-- Curso 2 -->
+                    <div class="course-card" data-category="eletrica nr10">
+                        <div class="course-image" style="background-color: #10B981;">
+                            <i class="fas fa-industry"></i>
                         </div>
-                        <h3 style="margin: 0;">PERFORMA <span style="color: #F97316;">CURSOS</span></h3>
+                        <div class="course-content">
+                            <span class="course-category">Elétrica / NR10</span>
+                            <h3 class="course-title">Eletricista Industrial + NR10</h3>
+                            <p class="course-description">Capacitação para atuação em sistemas elétricos industriais, com enfoque em manutenção, instalação e NR10 para ambientes industriais.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 120 horas</span>
+                                <span><i class="far fa-user"></i> 20 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Eletricista Industrial + NR10" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
                     </div>
-                    <p>Transformando carreiras através da educação profissional de excelência desde 2010.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    
+                    <!-- Curso 3 -->
+                    <div class="course-card" data-category="eletrica">
+                        <div class="course-image" style="background-color: #8B5CF6;">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Elétrica</span>
+                            <h3 class="course-title">Mantenedor de Usinas Fotovoltaicas</h3>
+                            <p class="course-description">Treinamento especializado para manutenção preventiva e corretiva em sistemas de energia solar fotovoltaica de pequeno a grande porte.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 40 horas</span>
+                                <span><i class="far fa-user"></i> 15 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Mantenedor de Usinas Fotovoltaicas" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 4 -->
+                    <div class="course-card" data-category="nr10">
+                        <div class="course-image" style="background-color: #EF4444;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">NR10</span>
+                            <h3 class="course-title">NR10 Básico</h3>
+                            <p class="course-description">Curso obrigatório para profissionais que trabalham com eletricidade, abordando segurança em instalações e serviços com eletricidade.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 40 horas</span>
+                                <span><i class="far fa-user"></i> 30 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="NR10 Básico" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 5 -->
+                    <div class="course-card" data-category="nr10">
+                        <div class="course-image" style="background-color: #F59E0B;">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">NR10</span>
+                            <h3 class="course-title">NR10 Sistemas de Potência</h3>
+                            <p class="course-description">Treinamento especializado para profissionais que atuam em sistemas de potência, subestações e redes de alta tensão.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 40 horas</span>
+                                <span><i class="far fa-user"></i> 20 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="NR10 Sistemas de Potência" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 6 -->
+                    <div class="course-card" data-category="nr10">
+                        <div class="course-image" style="background-color: #06B6D4;">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">NR10</span>
+                            <h3 class="course-title">NR10 Básico Reciclagem</h3>
+                            <p class="course-description">Reciclagem obrigatória a cada 2 anos para profissionais que já possuem o curso NR10 Básico, atualizando conhecimentos em segurança.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> Reciclagem</span>
+                                <span><i class="far fa-user"></i> 25 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="NR10 Básico Reciclagem" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 7 -->
+                    <div class="course-card" data-category="nr10">
+                        <div class="course-image" style="background-color: #8B5CF6;">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">NR10</span>
+                            <h3 class="course-title">NR10 Sistemas de Potência Reciclagem</h3>
+                            <p class="course-description">Atualização para profissionais que atuam em sistemas de potência, com revisão das normas e procedimentos de segurança.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> Reciclagem</span>
+                                <span><i class="far fa-user"></i> 20 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="NR10 Sistemas de Potência Reciclagem" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 8 -->
+                    <div class="course-card" data-category="operacao">
+                        <div class="course-image" style="background-color: #10B981;">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Operação</span>
+                            <h3 class="course-title">Manobras e Subestações</h3>
+                            <p class="course-description">Treinamento prático para execução de manobras em subestações, seguindo procedimentos de segurança e operação.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 20 horas</span>
+                                <span><i class="far fa-user"></i> 15 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Manobras e Subestações" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 9 -->
+                    <div class="course-card" data-category="operacao">
+                        <div class="course-image" style="background-color: #3B82F6;">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Operação</span>
+                            <h3 class="course-title">Operador de Subestações</h3>
+                            <p class="course-description">Formação completa para operação de subestações elétricas, incluindo monitoramento, controle e procedimentos de emergência.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 40 horas</span>
+                                <span><i class="far fa-user"></i> 12 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Operador de Subestações" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 10 -->
+                    <div class="course-card" data-category="operacao">
+                        <div class="course-image" style="background-color: #F59E0B;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Operação</span>
+                            <h3 class="course-title">Comunicação Verbal na Operação</h3>
+                            <p class="course-description">Desenvolvimento de técnicas de comunicação clara e eficiente para ambientes de operação elétrica, prevenindo falhas humanas.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 8 horas</span>
+                                <span><i class="far fa-user"></i> 20 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Comunicação Verbal na Operação" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 11 -->
+                    <div class="course-card" data-category="operacao">
+                        <div class="course-image" style="background-color: #EF4444;">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Operação</span>
+                            <h3 class="course-title">Certificação de Operadores ONS</h3>
+                            <p class="course-description">Preparatório para certificação do Operador Nacional do Sistema Elétrico (ONS), com foco em regulamentos e procedimentos.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 30 horas</span>
+                                <span><i class="far fa-user"></i> 10 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Certificação de Operadores ONS" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Curso 12 -->
+                    <div class="course-card" data-category="operacao">
+                        <div class="course-image" style="background-color: #06B6D4;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Operação</span>
+                            <h3 class="course-title">Proteção de Sistemas Elétricos para Operadores</h3>
+                            <p class="course-description">Conhecimentos essenciais sobre sistemas de proteção elétrica para operadores, incluindo relés, disjuntores e coordenação.</p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 30 horas</span>
+                                <span><i class="far fa-user"></i> 15 vagas</span>
+                            </div>
+                            <div class="course-price">Consulte o valor</div>
+                            <button class="btn btn-primary matricula-course-btn" data-course="Proteção de Sistemas Elétricos para Operadores" style="width: 100%; display: block; text-align: center; margin-top: auto;">Matricule-se</button>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Cursos</h3>
-                    <ul>
-                        <li><a href="#courses">Tecnologia</a></li>
-                        <li><a href="#courses">Administração</a></li>
-                        <li><a href="#courses">Saúde</a></li>
-                        <li><a href="#courses">Gastronomia</a></li>
-                        <li><a href="#courses">Design</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#courses">Cursos</a></li>
-                        <li><a href="#about">Sobre Nós</a></li>
-                        <li><a href="#testimonials">Depoimentos</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contato</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Rua das Profissões, 123 - Centro</li>
-                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
-                        <li><i class="fas fa-envelope"></i> contato@performacursos.com</li>
-                        <li><i class="fas fa-clock"></i> Seg-Sex: 8h às 22h | Sáb: 8h às 14h</li>
-                    </ul>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-accent" id="matriculaBtnCourses" style="text-decoration: none;">Entre em Contato para Mais Informações</button>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 PERFORMA CURSOS. Todos os direitos reservados.</p>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Depoimentos de Alunos</h2>
+                    <p>Veja o que nossos ex-alunos falam sobre a experiência na PERFORMA CURSOS</p>
+                </div>
+                
+                <div class="testimonial-slider">
+                    <div class="testimonial-card" id="testimonial1">
+                        <div class="testimonial-text">
+                            "Após concluir o curso de Eletricista Industrial + NR10 na PERFORMA CURSOS, consegui uma promoção na empresa onde trabalho e hoje sou responsável pela equipe de manutenção elétrica."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                CS
+                            </div>
+                            <div class="author-info">
+                                <h4>Carlos Silva</h4>
+                                <p>Ex-aluno de Eletricista Industrial + NR10</p>
+                                <p><strong>Atualmente:</strong> Supervisor de Manutenção Elétrica</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-controls">
+                        <button class="slider-btn" id="prevTestimonial">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-btn" id="nextTestimonial">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
-    
-    <script>
-        // Mobile Menu Toggle
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta" id="contact">
+            <div class="container">
+                <h2>Pronto para se especializar no setor elétrico?</h2>
+                <p>Na PERFORMA CURSOS, sua segurança e capacitação profissional são nossa prioridade.</p>
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-accent" id="matriculaBtnCta" style="font-size: 1.1rem; padding: 15px 30px;">Matricule-se Agora</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 style="margin: 0;">PERFORMA <span style="color: #F97316;">CURSOS</span></h3>
+                        </div>
+                        <p>Especialista em treinamentos elétricos e de operação com foco em segurança e excelência profissional.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Cursos</h3>
+                        <ul>
+                            <li><a href="#courses">Cursos de Elétrica</a></li>
+                            <li><a href="#courses">Treinamentos NR10</a></li>
+                            <li><a href="#courses">Cursos de Operação</a></li>
+                            <li><a href="#courses">Especializações</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="#home">Início</a></li>
+                            <li><a href="#courses">Cursos</a></li>
+                            <li><a href="#testimonials">Depoimentos</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Contato</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Rua das Elétricas, 123</li>
+                            <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                            <li><i class="fas fa-envelope"></i> contato@performacursos.com</li>
+                            <li><i class="fas fa-clock"></i> Seg-Sex: 8h às 22h</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2026 PERFORMA CURSOS. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
-        const mobileMenuBtn = document.getElementById('mobileMenu
+    <script>
+        // ==================== CONFIGURAÇÕES ====================
+        // Coloque aqui o número de WhatsApp da escola
+        const WHATSAPP_NUMBER = "5511999999999";
+        
+        // ==================== FUNÇÕES BÁSICAS ====================
+        
+        // Fechar menu mobile
+        function closeMobileMenu() {
+            const mainNav = document.getElementById('mainNav');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+        
+        // Mostrar modal de matrícula
+        function showMatriculaModal(course = '') {
+            const modal = document.getElementById('matriculaModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Se um curso específico foi passado, selecioná-lo
+            if (course) {
+                document.getElementById('curso').value = course;
+                
+                // Se o curso não estiver na lista, selecionar "Outro"
+                const select = document.getElementById('curso');
+                let found = false;
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === course) {
+                        found = true;
+                        break;
+                    }
+                }
+                
+                if (!found) {
+                    document.getElementById('curso').value = 'Outro';
+                    document.getElementById('outroCursoContainer').style.display = 'block';
+                    document.getElementById('outroCurso').value = course;
+                }
+            }
+            
+            // Resetar formulário e mostrar formulário (esconder mensagem de sucesso)
+            document.getElementById('matriculaForm').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        // Fechar modal de matrícula
+        function closeMatriculaModal() {
+            const modal = document.getElementById('matriculaModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Formatar número de celular
+        function formatPhoneNumber(phone) {
+            // Remover todos os caracteres não numéricos
+            let cleaned = phone.replace(/\D/g, '');
+            
+            // Verificar se tem DDD (2 dígitos) + número (9 dígitos)
+            if (cleaned.length === 11) {
+                return cleaned.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (cleaned.length === 10) {
+                return cleaned.replace(/^(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+            }
+            
+            return phone;
+        }
+        
+        // Criar mensagem para WhatsApp
+        function createWhatsAppMessage(formData) {
+            const nome = formData.get('nome');
+            const celular = formatPhoneNumber(formData.get('celular'));
+            const email = formData.get('email');
+            let curso = formData.get('curso');
+            const outroCurso = formData.get('outroCurso');
+            const mensagem = formData.get('mensagem');
+            
+            // Se selecionou "Outro", usar o valor do campo outroCurso
+            if (curso === 'Outro' && outroCurso) {
+                curso = outroCurso;
+            }
+            
+            // Construir a mensagem
+            let whatsappMessage = `Olá, PERFORMA CURSOS! Gostaria de fazer minha matrícula.\n\n`;
+            whatsappMessage += `*Informações do Interessado:*\n`;
+            whatsappMessage += `👤 *Nome:* ${nome}\n`;
+            whatsappMessage += `📱 *Celular:* ${celular}\n`;
+            whatsappMessage += `📧 *E-mail:* ${email}\n`;
+            whatsappMessage += `🎓 *Curso Pretendido:* ${curso}\n`;
+            
+            if (mensagem) {
+                whatsappMessage += `\n*Mensagem Adicional:*\n${mensagem}\n`;
+            }
+            
+            whatsappMessage += `\n_Esta mensagem foi enviada através do site da PERFORMA CURSOS._`;
+            
+            return encodeURIComponent(whatsappMessage);
+        }
+        
+        // ==================== EVENT LISTENERS ====================
+        
+        // Inicializar event listeners quando o DOM carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. BOTÕES DE MATRÍCULA
+            const matriculaButtons = [
+                document.getElementById('matriculaBtnHeader'),
+                document.getElementById('matriculaBtnHero'),
+                document.getElementById('matriculaBtnCourses'),
+                document.getElementById('matriculaBtnCta')
+            ];
+            
+            matriculaButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', function() {
+                        showMatriculaModal();
+                    });
+                }
+            });
+            
+            // 2. BOTÕES DE MATRÍCULA NOS CARDS DE CURSO
+            document.querySelectorAll('.matricula-course-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const course = this.getAttribute('data-course');
+                    showMatriculaModal(course);
+                });
+            });
+            
+            // 3. FECHAR MODAL
+            document.getElementById('closeModal').addEventListener('click', closeMatriculaModal);
+            
+            // 4. FECHAR MODAL AO CLICAR FORA
+            document.getElementById('matriculaModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeMatriculaModal();
+                }
+            });
+            
+            // 5. MOSTRAR CAMPO "OUTRO CURSO" QUANDO SELECIONADO
+            document.getElementById('curso').addEventListener('change', function() {
+                const outroContainer = document.getElementById('outroCursoContainer');
+                if (this.value === 'Outro') {
+                    outroContainer.style.display = 'block';
+                    document.getElementById('outroCurso').required = true;
+                } else {
+                    outroContainer.style.display = 'none';
+                    document.getElementById('outroCurso').required = false;
+                }
+            });
+            
+            // 6. FORMATAÇÃO DO CELULAR
+            document.getElementById('celular').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length > 2 && value.length <= 7) {
+                    value = value.replace(/^(\d{2})(\d+)/, '($1) $2');
+                } else if (value.length > 7 && value.length <= 11) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d+)/, '($1) $2-$3');
+                } else if (value.length > 11) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+                
+                e.target.value = value;
+            });
+            
+            // 7. ENVIO DO FORMULÁRIO
+            document.getElementById('matriculaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Validação básica
+                const nome = formData.get('nome');
+                const celular = formData.get('celular');
+                const email = formData.get('email');
+                const curso = formData.get('curso');
+                
+                if (!nome || !celular || !email || !curso) {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                    return;
+                }
+                
+                if (curso === 'Outro' && !formData.get('outroCurso')) {
+                    alert('Por favor, especifique qual curso você tem interesse.');
+                    return;
+                }
+                
+                // Criar mensagem para WhatsApp
+                const message = createWhatsAppMessage(formData);
+                
+                // Criar link do WhatsApp
+                const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+                
+                // Atualizar link no botão
+                document.getElementById('whatsappLink').href = whatsappLink;
+                
+                // Esconder formulário e mostrar mensagem de sucesso
+                document.getElementById('matriculaForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            });
+            
+            // 8. ABRIR WHATSAPP AO CLICAR NO BOTÃO
+            document.getElementById('whatsappLink').addEventListener('click', function(e) {
+                // O link já está configurado, apenas garantir que abre em nova aba
+                this.target = '_blank';
+                // Fechar modal após alguns segundos
+                setTimeout(closeMatriculaModal, 2000);
+            });
+            
+            // 9. MENU MOBILE
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.innerHTML = mainNav.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+            
+            // 10. FILTRO DE CURSOS
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Atualizar botões ativos
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filtrar cursos
+                    const filter = this.getAttribute('data-filter');
+                    
+                    courseCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // 11. DEPOIMENTOS (Slider)
+            const testimonials = [
+                {
+                    text: "Após concluir o curso de Eletricista Industrial + NR10 na PERFORMA CURSOS, consegui uma promoção na empresa onde trabalho e hoje sou responsável pela equipe de manutenção elétrica.",
+                    name: "Carlos Silva",
+                    role: "Ex-aluno de Eletricista Industrial + NR10",
+                    current: "Supervisor de Manutenção Elétrica",
+                    initials: "CS"
+                },
+                {
+                    text: "O curso de NR10 Sistemas de Potência na PERFORMA foi fundamental para minha carreira. Hoje atuo com segurança em subestações de alta tensão.",
+                    name: "Ana Santos",
+                    role: "Ex-aluna de NR10 Sistemas de Potência",
+                    current: "Técnica em Subestações",
+                    initials: "AS"
+                }
+            ];
+            
+            let currentTestimonial = 0;
+            const testimonialCard = document.getElementById('testimonial1');
+            const prevBtn = document.getElementById('prevTestimonial');
+            const nextBtn = document.getElementById('nextTestimonial');
+            
+            function updateTestimonial() {
+                if (testimonialCard && testimonials[currentTestimonial]) {
+                    const t = testimonials[currentTestimonial];
+                    testimonialCard.innerHTML = `
+                        <div class="testimonial-text">${t.text}</div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">${t.initials}</div>
+                            <div class="author-info">
+                                <h4>${t.name}</h4>
+                                <p>${t.role}</p>
+                                <p><strong>Atualmente:</strong> ${t.current}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                    updateTestimonial();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                    updateTestimonial();
+                });
+            }
+            
+            // Inicializar
+            updateTestimonial();
+            
+            // 12. LINKS DE NAVEGAÇÃO SUAVE
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            closeMobileMenu();
+                        }
+                    }
+                });
+            });
+            
+            // 13. LINKS DO MENU
+            document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            console.log('Sistema de cursos elétricos configurado!');
+        });
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMatriculaModal();
+            }
+        });
+    </script>
+</body>
+</html>
